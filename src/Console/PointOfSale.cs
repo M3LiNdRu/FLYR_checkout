@@ -6,8 +6,6 @@ namespace Supermarket.Console
 {
     public class PointOfSale
     {
-        private readonly string _storeId;
-        private readonly string _tillNumber;
         private readonly ILogger<PointOfSale> _logger;
         private readonly List<Product> _products;
         private readonly List<IPricingRule> _pricingRules;
@@ -18,8 +16,6 @@ namespace Supermarket.Console
             _logger = logger;
             _products = new List<Product>();
             _pricingRules = new List<IPricingRule>();
-            _storeId = storeId;
-            _tillNumber = tillNumber;
             _checkout = new Checkout(_pricingRules);
 
             _logger.LogInformation("Till number {n} has been activated for store {s}", tillNumber, storeId);

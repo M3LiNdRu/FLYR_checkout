@@ -3,7 +3,8 @@ using Supermarket.Domain.Common;
 namespace Supermarket.Domain.Aggregates.ProductAggregate;
 
 public record Price(decimal Amount, string Currency);
-public class Product : Entity
+
+public class Product : Entity, IAggregateRoot
 {
     public string Barcode { get; private set; }
     public string CodeName { get; private set; }

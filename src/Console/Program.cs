@@ -20,7 +20,6 @@ logger.LogInformation("Small Supermarkets - Point of Sale");
 var tea = new Product("GR1", "Green tea", new Price(3.11M, "GBP"));
 var strawberries = new Product("SR1", "Strawberries", new Price(5.0M, "GBP"));
 var coffee = new Product("CF1", "Coffee", new Price(11.23M, "GBP"));
-
 pointOfSale.SetStoreInventory([tea, strawberries, coffee]);
 
 //Define Pricing Rules
@@ -40,6 +39,7 @@ pointOfSale.LoadPricingRule(ceo_rule);
 pointOfSale.LoadPricingRule(coo_rule);
 pointOfSale.LoadPricingRule(cto_rule);
 
+//Start checkout flow
 logger.LogInformation("Scan any product for checkout.");
 
 pointOfSale.Scan(tea);
