@@ -99,6 +99,35 @@ public class CheckoutTest
         result.Currency.Should().Be(expectedCurrency);
     }
 
+    [Fact]
+    public void Total_WhenCombinedPricingRulesApplied_EnsuresValidState() 
+    {
+        //Arrange
+        var tea = new Product("GR1", "Green tea", new Price(3.11M, "GBP"));
+        var strawberries = new Product("SR1", "Strawberries", new Price(5.0M, "GBP"));
+        var coffee = new Product("CF1", "Coffee", new Price(11.23M, "GBP"));
+        
+        var ceo_rule = new GetOneForFreePricingRule("buy-one-get-one-for-free", tea.Barcode);
+        var coo_rule = new BulkPurchasePricingRule("bulk-purchase-x3+-discount", strawberries.Barcode, 3, 0.5M);
+        var multiplier = Math.Round(coffee.Price.Amount*(1/3),2);
+        var cto_rule = new BulkPurchasePricingRule("special-discount", coffee.Barcode, 3, multiplier);
+
+        var sut = new Checkout([ceo_rule, coo_rule, cto_rule]); 
+        SetupMultipleScans(2, () => sut.Scan(tea));
+        SetupMultipleScans(6, () => sut.Scan(strawberries));
+        SetupMultipleScans(3, () => sut.Scan(coffee));
+        
+        var expectedAmount = 33.85M;
+
+        //Act
+        var result = sut.Total();
+
+        //Assert
+        sut.Items.Should().HaveCount(3);
+        result.Amount.Should().Be(expectedAmount);
+        result.Currency.Should().Be(tea.Price.Currency);  
+    }
+
     private void SetupMultipleScans(int times, Action action) 
     {
         foreach (var i in Enumerable.Range(0, times)) 
