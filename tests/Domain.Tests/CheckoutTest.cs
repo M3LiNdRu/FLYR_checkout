@@ -86,7 +86,7 @@ public class CheckoutTest
         var multiplier = 0.5M;
         var rule = new BulkPurchasePricingRule("bulk-purchase-x3+-discount", product.Barcode, quantity, multiplier);
         var sut = new Checkout([rule]); 
-        Enumerable.Range(0, quantity).ForEach(_ => sut.Scan(product));
+        SetupMultipleScans(quantity, () => sut.Scan(product));
         var expectedCurrency = product.Price.Currency;
         var expectedAmount = product.Price.Amount*quantity - multiplier*quantity;
 
@@ -97,5 +97,13 @@ public class CheckoutTest
         sut.Items.Single().Quantity.Should().Be(quantity);
         result.Amount.Should().Be(expectedAmount);
         result.Currency.Should().Be(expectedCurrency);
+    }
+
+    private void SetupMultipleScans(int times, Action action) 
+    {
+        foreach (var i in Enumerable.Range(0, times)) 
+        {
+            action();
+        }
     }
 }
