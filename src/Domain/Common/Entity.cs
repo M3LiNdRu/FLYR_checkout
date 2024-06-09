@@ -7,5 +7,5 @@ public interface IEntity
 
 public abstract class Entity : IEntity
 {
-    public required string Id { get; init; }
+    public string Id { get; protected set; }
 }
