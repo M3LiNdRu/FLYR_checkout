@@ -1,7 +1,7 @@
-using Domain.Aggregates.ProductAggregate;
-using Domain.Common;
+using Supermarket.Domain.Aggregates.ProductAggregate;
+using Supermarket.Domain.Common;
 
-namespace Domain.Aggregates.OrderAggregate;
+namespace Supermarket.Domain.Aggregates.OrderAggregate;
 
 public record Discount(string Description, Price Price);
 
@@ -80,14 +80,14 @@ public class Checkout : IAggregateRoot
         if (!_items.Any())
             return new Price(0, DefaultCurrency);
 
-        applyPricingRules();
+        ApplyPricingRules();
 
         var currency = _items.First().Product.Price.Currency;
         var totalAmount = _items.Sum(i => i.CalculatePrice().Amount);
         return new Price(totalAmount, currency);
     }
 
-    private void applyPricingRules() 
+    private void ApplyPricingRules() 
     {
         foreach (var item in _items) {
             foreach (var rule in Rules) {

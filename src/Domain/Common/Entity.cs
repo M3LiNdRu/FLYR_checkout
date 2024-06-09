@@ -1,11 +1,6 @@
-﻿namespace Domain.Common;
+﻿namespace Supermarket.Domain.Common;
 
-public interface IEntity 
-{
-    string Id { get; }
-}
-
-public abstract class Entity : IEntity
+public abstract class Entity
 {
     public string Id { get; protected set; }
 }

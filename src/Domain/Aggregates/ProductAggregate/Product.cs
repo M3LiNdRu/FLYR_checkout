@@ -1,6 +1,6 @@
-using Domain.Common;
+using Supermarket.Domain.Common;
 
-namespace Domain.Aggregates.ProductAggregate;
+namespace Supermarket.Domain.Aggregates.ProductAggregate;
 
 public record Price(decimal Amount, string Currency);
 public class Product : Entity

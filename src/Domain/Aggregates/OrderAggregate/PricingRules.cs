@@ -1,4 +1,4 @@
-namespace Domain.Aggregates.OrderAggregate;
+namespace Supermarket.Domain.Aggregates.OrderAggregate;
 
 public interface IPricingRule 
 {
@@ -11,6 +11,9 @@ public abstract class PricingRule : IPricingRule
 {
     public PricingRule(string name, string barcode)
     {
+        ArgumentNullException.ThrowIfNull(name);
+        ArgumentNullException.ThrowIfNull(barcode);
+
         Name = name;
         Barcode = barcode;
     }
@@ -21,6 +24,7 @@ public abstract class PricingRule : IPricingRule
 
     public abstract void Apply(OrderItem item);
 }
+
 public class GetOneForFreePricingRule : PricingRule
 {
     public GetOneForFreePricingRule(string name, string barcode) : base(name, barcode)
