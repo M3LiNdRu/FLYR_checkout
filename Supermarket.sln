@@ -20,6 +20,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".repo", ".repo", "{32EDB44C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "src\Console\Console.csproj", "{182CD75B-A367-4A38-82F4-1A30D8EBAB75}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{2C147230-7A80-4C05-8686-B449C87ADF7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{63C334CF-E240-4769-B4A9-EC76B0D0F20A}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\ci.yaml = .github\workflows\ci.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +53,7 @@ Global
 		{5BC23BA2-B942-47EB-BD4B-677C672739BE} = {E39F9342-E547-4EAC-8C08-043AA81431E8}
 		{5F4BB1BC-5438-419A-81FD-A630C70DF2D5} = {A0927674-C371-4F0F-BE09-77563C553A23}
 		{182CD75B-A367-4A38-82F4-1A30D8EBAB75} = {E39F9342-E547-4EAC-8C08-043AA81431E8}
+		{63C334CF-E240-4769-B4A9-EC76B0D0F20A} = {2C147230-7A80-4C05-8686-B449C87ADF7B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE430368-316D-4B58-A419-072902AB043C}
